@@ -3,6 +3,22 @@
 #include "include/ScoreSaberData.hpp"
 #include "include/BeatLeaderData.hpp"
 
+#include "GlobalNamespace/MainMenuViewController.hpp"
+#include "UnityEngine/UI/Button.hpp"
+#include "UnityEngine/GameObject.hpp"
+#include "HMUI/CurvedTextMeshPro.hpp"
+
+MAKE_HOOK_MATCH(MainMenuUIHook, &GlobalNamespace::MainMenuViewController::DidActivate, void,
+ GlobalNamespace::MainMenuViewController* self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling) {
+MainMenuUIHook(self, firstActivation, addedToHierarchy, screenSystemEnabling);
+
+UnityEngine::UI::Button* soloMenuButton = self->soloButton;
+    UnityEngine::GameObject* gameObject = soloMenuButton->get_gameObject();
+    HMUI::CurvedTextMeshPro* soloMenuText = gameObject->GetComponentInChildren<HMUI::CurvedTextMeshPro*>();
+
+    // Set the text to "Score Viewer"
+    soloMenuText->SetText("Score Viewer");
+
 static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
 
 // Loads the config from disk using our modInfo, then returns it for use
@@ -32,7 +48,15 @@ extern "C" void setup(ModInfo& info) {
 extern "C" void load() {
     il2cpp_functions::Init();
 
+// Regsiter our Settings
+    QuestUI::Register::RegisterModSettingsViewController(modInfo, DidActivate);
+
     getLogger().info("Installing hooks...");
-    // Install our hooks (none defined yet)
+    INSTALL_HOOK(getLogger(), ActivateFlowCoordinatorHook);
+    INSTALL_HOOK(getLogger(), FixedUpdateHook);
+    INSTALL_HOOK(getLogger(), LevelSelectionNavigationControllerDidActivate);
+    INSTALL_HOOK(getLogger(), LevelSelectionNavigationControllerDidDeactivate);
+    INSTALL_HOOK(getLogger(), MainMenuUIHook);
     getLogger().info("Installed all hooks!");
+    
 }
