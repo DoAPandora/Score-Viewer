@@ -1,4 +1,9 @@
 #include "questui/shared/QuestUI.hpp"
+#include "beatsaber-hook/shared/utils/il2cpp-utils.hpp"
+
+#include "UnityEngine/UI/Button.hpp"
+#include "HMUI/ViewController.hpp"
+#include "HMUI/FlowCoordinator.hpp"
 
 // other code
 
@@ -9,5 +14,5 @@ extern "C" void load() {
 
     // other code
 
-    UnityEngine::GameObject* self, bool firstActivation
+    UnityEngine::GameObject* self, bool firstActivation;
 }
