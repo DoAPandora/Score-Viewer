@@ -19,10 +19,9 @@ Player::Player(rapidjson::Value const& userModInterface) {
     countryRank = contextRank["countryRank"].GetInt();
     pp = contextRank["pp"].GetFloat();
 
-    auto clansList = userModInterface["clans"].GetArray();
-    for (int index = 0; index < (int)clansList.Size(); ++index) {
-        auto const& clan = clansList[index];
-        clans.push_back(Clan(clan));
+    //auto clansList = userModInterface["clans"].GetArray();
+    //for (int index = 0; index < (int)clansList.Size(); ++index) {
+        //auto const& clan = clansList[index];
     }
 
     if (userModInterface.HasMember("friends") && !userModInterface["friends"].IsNull()) {
