@@ -42,7 +42,6 @@ class Player
     
     vector<string> friends;
     vector<Social> socials;
-    vector<Clan> clans;
 
     Player(rapidjson::Value const& userModInterface);
     void SetHistory(rapidjson::Value const& history);
