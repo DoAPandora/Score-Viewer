@@ -1,0 +1,47 @@
+{
+	"version": "0.2.0",
+	"sharedDir": "shared",
+	"dependenciesDir": "extern",
+	"workspace": {
+		"scripts": {
+			"build": ["pwsh ./scripts/build.ps1"],
+			"copy": ["pwsh ./scripts/copy.ps1"],
+			"qmod": ["pwsh ./scripts/build.ps1", "pwsh ./scripts/createqmod.ps1"],
+			"stack": ["pwsh ./scripts/ndk-stack.ps1"],
+			"tomb": ["pwsh ./scripts/pull-tombstone.ps1"],
+			"restart": ["pwsh ./scripts/restart-game.ps1"],
+			"logcat": ["pwsh ./scripts/start-logging.ps1"]
+		}
+	},
+	"info": {
+		"name": "Score Viewer",
+		"id": "scoreviewer",
+		"version": "1.0.0",
+		"url": null,
+		"additionalData": {
+			"overrideSoName": "libscoreviewer.so",
+			"cmake": true
+		}
+	},
+	"dependencies": [
+		{
+			"id": "beatsaber-hook",
+			"versionRange": "^4.0.2",
+			"additionalData": {
+				"extraFiles": [
+					"src/inline-hook"
+				]
+			}
+		},
+		{
+			"id": "modloader",
+			"versionRange": "=1.2.3",
+			"additionalData": {
+				
+			}
+		}
+	],
+	"additionalData": {
+		
+	}
+}
