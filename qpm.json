@@ -1,47 +1,98 @@
 {
-	"version": "0.2.0",
 	"sharedDir": "shared",
 	"dependenciesDir": "extern",
-	"workspace": {
-		"scripts": {
-			"build": ["pwsh ./scripts/build.ps1"],
-			"copy": ["pwsh ./scripts/copy.ps1"],
-			"qmod": ["pwsh ./scripts/build.ps1", "pwsh ./scripts/createqmod.ps1"],
-			"stack": ["pwsh ./scripts/ndk-stack.ps1"],
-			"tomb": ["pwsh ./scripts/pull-tombstone.ps1"],
-			"restart": ["pwsh ./scripts/restart-game.ps1"],
-			"logcat": ["pwsh ./scripts/start-logging.ps1"]
-		}
-	},
 	"info": {
-		"name": "Score Viewer",
-		"id": "scoreviewer",
-		"version": "1.0.0",
-		"url": null,
-		"additionalData": {
-			"overrideSoName": "libscoreviewer.so",
-			"cmake": true
-		}
+	  "name": "Score Viewer",
+	  "id": "scoreviewer",
+	  "version": "0.0.1",
+	  "url": null,
+	  "additionalData": {
+		"overrideSoName": "libcinema.so",
+		"cmake": true
+	  }
+	},
+	"workspace": {
+	  "scripts": {
+		"build": [
+		  "pwsh ./scripts/build.ps1"
+		],
+		"copy": [
+		  "pwsh ./scripts/copy.ps1"
+		],
+		"logcat": [
+		  "adb logcat -c",
+		  "pwsh ./scripts/start-logging.ps1"
+		],
+		"qmod": [
+		  "pwsh ./scripts/build.ps1 -clean",
+		  "qpm qmod build",
+		  "pwsh ./scripts/createqmod.ps1"
+		],
+		"restart": [
+		  "pwsh ./scripts/restart-game.ps1"
+		],
+		"stack": [
+		  "pwsh ./scripts/ndk-stack.ps1"
+		],
+		"tomb": [
+		  "pwsh ./scripts/pull-tombstone.ps1"
+		]
+	  }
 	},
 	"dependencies": [
-		{
-			"id": "beatsaber-hook",
-			"versionRange": "^4.0.2",
-			"additionalData": {
-				"extraFiles": [
-					"src/inline-hook"
-				]
-			}
-		},
-		{
-			"id": "modloader",
-			"versionRange": "=1.2.3",
-			"additionalData": {
-				
-			}
+	  {
+		"id": "beatsaber-hook",
+		"versionRange": "^3.14.0",
+		"additionalData": {
+		  "extraFiles": [
+			"src/inline-hook"
+		  ]
 		}
-	],
-	"additionalData": {
-		
-	}
-}
+	  },
+	  {
+		"id": "codegen",
+		"versionRange": "^0.33.0",
+		"additionalData": {}
+	  },
+	  {
+		"id": "custom-types",
+		"versionRange": "^0.15.24",
+		"additionalData": {}
+	  },
+	  {
+		"id": "rapidjson-macros",
+		"versionRange": "^0.4.6",
+		"additionalData": {}
+	  },
+	  {
+		"id": "config-utils",
+		"versionRange": "^1.0.2",
+		"additionalData": {}
+	  },
+	  {
+		"id": "questui",
+		"versionRange": "^0.17.11",
+		"additionalData": {}
+	  },
+	  {
+		"id": "pinkcore",
+		"versionRange": "^1.8.9",
+		"additionalData": {}
+	  },
+	  {
+		"id": "bsml",
+		"versionRange": "^0.3.1",
+		"additionalData": {}
+	  },
+	  {
+		"id": "paper",
+		"versionRange": "^1.2.17",
+		"additionalData": {}
+	  },
+	  {
+		"id": "songloader",
+		"versionRange": "^0.10.17",
+		"additionalData": {}
+	  }
+	]
+  }
