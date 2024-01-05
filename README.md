@@ -1,6 +1,6 @@
-# #{name}
+Score Viewer
 
-#{description}
+Score Viewer is a mod that shows your current rank on a song.
 
 Use `qpm-rust s build` to build
 Same goes for `qpm-rust s copy` and `qpm-rust s qmod`
