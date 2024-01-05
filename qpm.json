@@ -4,10 +4,10 @@
 	"info": {
 	  "name": "Score Viewer",
 	  "id": "scoreviewer",
-	  "version": "0.0.1",
+	  "version": "1.0.0",
 	  "url": null,
 	  "additionalData": {
-		"overrideSoName": "libcinema.so",
+		"overrideSoName": "libscoreviewer.so",
 		"cmake": true
 	  }
 	},
