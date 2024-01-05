@@ -1,4 +1,5 @@
 #include "beatsaber-hook/shared/utils/utils.h"
+#include "include/ScoreSaberData.hpp"
 
 namespace ScoreSaber::Data
 {
