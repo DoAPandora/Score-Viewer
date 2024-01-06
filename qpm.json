@@ -86,7 +86,7 @@
 	  },
 	  {
 		"id": "paper",
-		"versionRange": "^3.3.0",
+		"versionRange": "^1.2.9",
 		"additionalData": {}
 	  }
 	]
