@@ -42,7 +42,7 @@
 	"dependencies": [
 	  {
 		"id": "beatsaber-hook",
-		"versionRange": "^3.14.0",
+		"versionRange": "^4.0.0",
 		"additionalData": {
 		  "extraFiles": [
 			"src/inline-hook"
@@ -51,42 +51,42 @@
 	  },
 	  {
 		"id": "codegen",
-		"versionRange": "^0.33.0",
+		"versionRange": "^0.33.1",
 		"additionalData": {}
 	  },
 	  {
 		"id": "custom-types",
-		"versionRange": "^0.15.24",
+		"versionRange": "^0.15.25",
 		"additionalData": {}
 	  },
 	  {
 		"id": "rapidjson-macros",
-		"versionRange": "^0.4.6",
+		"versionRange": "^1.1.0",
 		"additionalData": {}
 	  },
 	  {
 		"id": "config-utils",
-		"versionRange": "^1.0.2",
+		"versionRange": "^1.2.0",
 		"additionalData": {}
 	  },
 	  {
 		"id": "questui",
-		"versionRange": "^0.17.11",
+		"versionRange": "^0.18.1",
 		"additionalData": {}
 	  },
 	  {
 		"id": "pinkcore",
-		"versionRange": "^1.8.9",
+		"versionRange": "^1.8.10",
 		"additionalData": {}
 	  },
 	  {
 		"id": "bsml",
-		"versionRange": "^0.3.1",
+		"versionRange": "^0.3.9",
 		"additionalData": {}
 	  },
 	  {
 		"id": "paper",
-		"versionRange": "^1.2.17",
+		"versionRange": "^3.3.0",
 		"additionalData": {}
 	  },
 	  {
