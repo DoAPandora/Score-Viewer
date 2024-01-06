@@ -11,7 +11,7 @@ struct ___FieldRegistrator_##name_ : ::custom_types::FieldRegistrator {     \
         ___TargetType::___TypeRegistration::addField(this);                 \
     }                                                                       \
     constexpr const char* name() const override {                           \
-        return #name_;                                                      \
+        return ##name_;                                                      \
     }                                                                       \
     const Il2CppType* type() const override {                               \
         ::il2cpp_functions::Init();                                         \
@@ -39,7 +39,7 @@ namespace BSML {
 }
 
 DECLARE_CLASS_CODEGEN(BSML, Tab, UnityEngine::MonoBehaviour,
-    DECLARE_INSTANCE_FIELD_TYPENAME(TabSelector*, selector, "BSML", "TabSelector");
+    //DECLARE_INSTANCE_FIELD_TYPENAME(TabSelector*, selector, "BSML", "TabSelector");
     DECLARE_INSTANCE_FIELD(StringW, tabName);
     DECLARE_INSTANCE_FIELD(StringW, tabKey);
     DECLARE_INSTANCE_FIELD(bool, isVisible);
