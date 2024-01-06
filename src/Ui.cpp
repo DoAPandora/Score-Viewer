@@ -2,7 +2,7 @@
 
 #include "custom-types/shared/macros.hpp"
 #include "UnityEngine/MonoBehaviour.hpp"
-#include "pinkcore/shared/LevelDetailAPI.hpp
+#include "pinkcore/shared/LevelDetailAPI.hpp"
 
 #ifndef DECLARE_INSTANCE_FIELD_TYPENAME
 #define DECLARE_INSTANCE_FIELD_TYPENAME(type_, ScoreViewer_, namezpace_, klass_)   \
