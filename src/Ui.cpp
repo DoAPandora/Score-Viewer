@@ -1,6 +1,9 @@
 #include "Ui.hpp"
 #include "main.hpp"
+
 #include "bsml/shared/BSML/Components/ClickableImage.hpp"
+#include "questui/shared/QuestUI.hpp"
+
 #include "assets.hpp"
 
 void DidActivate(HMUI::ViewController* self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling) {
