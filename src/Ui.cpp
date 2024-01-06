@@ -2,6 +2,7 @@
 
 #include "custom-types/shared/macros.hpp"
 #include "UnityEngine/MonoBehaviour.hpp"
+#include "pinkcore/shared/LevelDetailAPI.hpp
 
 #ifndef DECLARE_INSTANCE_FIELD_TYPENAME
 #define DECLARE_INSTANCE_FIELD_TYPENAME(type_, ScoreViewer_, namezpace_, klass_)   \
@@ -11,7 +12,8 @@ struct ___FieldRegistrator_##name_ : ::custom_types::FieldRegistrator {     \
         ___TargetType::___TypeRegistration::addField(this);                 \
     }                                                                       \
     constexpr const char* name() const override {                           \
-        return ##name_;                                                      \
+        return ##name_;                                                     \
+        LevelDetails& GetCurrentMapData();                                  \
     }                                                                       \
     const Il2CppType* type() const override {                               \
         ::il2cpp_functions::Init();                                         \
