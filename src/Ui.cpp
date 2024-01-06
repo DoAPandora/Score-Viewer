@@ -1,10 +1,9 @@
-#include "Ui.hpp"
+
 #include "main.hpp"
+#include "assets.hpp"
 
 #include "bsml/shared/BSML/Components/ClickableImage.hpp"
 #include "questui/shared/QuestUI.hpp"
-
-#include "assets.hpp"
 
 void DidActivate(HMUI::ViewController* self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling) {
     // Create our UI elements only when shown for the first time.
