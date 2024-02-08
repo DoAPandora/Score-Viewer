@@ -9,8 +9,7 @@
 
 #include "config.hpp"
 
-{
+
             QuestUI::BeatSaberUI::CreateToggle(parent, configValue.GetName(), configValue.GetValue(),
                 [&configValue](bool value) {}
                     configValue.SetValue(value);)
-}
