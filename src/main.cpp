@@ -73,6 +73,7 @@ MAKE_HOOK_MATCH(LevelListTableCell_SetDataFromLevelAsync, &GlobalNamespace::Leve
     if(isRanked && getModConfig().Enabled.GetValue())
 }
 
+{
 static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
 
 // Loads the config from disk using our modInfo, then returns it for use
@@ -111,4 +112,5 @@ extern "C" void load()
     getLogger().info("Installing hooks...");
     INSTALL_HOOK(getLogger(), LevelListTableCell_SetDataFromLevelAsync);
     getLogger().info("Installed all hooks!");
+}
 }
