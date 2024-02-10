@@ -83,13 +83,11 @@ MAKE_HOOK_MATCH(LevelListTableCell_SetDataFromLevelAsync, &GlobalNamespace::Leve
     if(isRanked && getModConfig().Enabled.GetValue())
     {
         promoText->SetText(getModConfig().DifferentText.GetValue() ? texts[rankedStatus] : texts[RankedStatus::Ranked]);
-        //promoTextBg->set_color(getModConfig().DifferentColor.GetValue() ? colors[rankedStatus] : colors[RankedStatus::Ranked]);
     }
     // fix issues with reused cells
     else
     {
         promoText->SetText(texts[RankedStatus::None]);
-        //promoTextBg->set_color(colors[RankedStatus::None]);
     }
 }
 
