@@ -66,27 +66,27 @@
 	  },
 	  {
 		"id": "config-utils",
-		"versionRange": "^1.1.0",
+		"versionRange": "*",
 		"additionalData": {}
 	  },
 	  {
 		"id": "questui",
-		"versionRange": "^0.17.12",
+		"versionRange": "^0.17.11",
 		"additionalData": {}
 	  },
 	  {
 		"id": "pinkcore",
-		"versionRange": "^1.8.9",
+		"versionRange": "*",
 		"additionalData": {}
 	  },
 	  {
 		"id": "bsml",
-		"versionRange": "^0.3.3",
+		"versionRange": "*",
 		"additionalData": {}
 	  },
 	  {
 		"id": "paper",
-		"versionRange": "^1.2.9",
+		"versionRange": "*",
 		"additionalData": {}
 	  },
 	  {
