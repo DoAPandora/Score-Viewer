@@ -70,8 +70,6 @@ MAKE_HOOK_MATCH(LevelListTableCell_SetDataFromLevelAsync, &GlobalNamespace::Leve
 
     bool isRanked = rankedStatus != RankedStatus::None;
 
-    localization->set_enabled(!isRanked);
-
     if(isRanked && getModConfig().Enabled.GetValue())
 }
 
