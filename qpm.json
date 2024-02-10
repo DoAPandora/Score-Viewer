@@ -4,7 +4,7 @@
 	"info": {
 	  "name": "Score Viewer",
 	  "id": "scoreviewer",
-	  "version": "1.0.0",
+	  "version": "1.0.0-beta1",
 	  "url": null,
 	  "additionalData": {
 		"overrideSoName": "libscoreviewer.so",
@@ -66,12 +66,12 @@
 	  },
 	  {
 		"id": "config-utils",
-		"versionRange": "*",
+		"versionRange": "^1.0.2",
 		"additionalData": {}
 	  },
 	  {
 		"id": "questui",
-		"versionRange": "^0.17.11",
+		"versionRange": "^0.17.12",
 		"additionalData": {}
 	  },
 	  {
@@ -86,7 +86,7 @@
 	  },
 	  {
 		"id": "paper",
-		"versionRange": "*",
+		"versionRange": "^1.2.9",
 		"additionalData": {}
 	  },
 	  {

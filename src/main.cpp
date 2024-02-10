@@ -7,7 +7,6 @@
 
 #include "GlobalNamespace/LevelListTableCell.hpp"
 
-#include "UnityEngine/Color.hpp"
 #include "UnityEngine/GameObject.hpp"
 #include "UnityEngine/Transform.hpp"
 
@@ -70,25 +69,10 @@ MAKE_HOOK_MATCH(LevelListTableCell_SetDataFromLevelAsync, &GlobalNamespace::Leve
     }
 
     bool isRanked = rankedStatus != RankedStatus::None;
-    
-    self->promoBadgeGo->SetActive((isRanked && getModConfig().Enabled.GetValue()) || isPromoted);
 
-    auto promoTextGo = self->promoBadgeGo->get_transform()->Find("PromoText")->get_gameObject();
-    auto localization = promoTextGo->GetComponent<Polyglot::LocalizedTextMeshProUGUI*>();
     localization->set_enabled(!isRanked);
 
-    auto promoText = promoTextGo->GetComponent<TMPro::TMP_Text*>();
-    auto promoTextBg = self->promoBadgeGo->GetComponent<HMUI::ImageView*>();
-
     if(isRanked && getModConfig().Enabled.GetValue())
-    {
-        promoText->SetText(getModConfig().DifferentText.GetValue() ? texts[rankedStatus] : texts[RankedStatus::Ranked]);
-    }
-    // fix issues with reused cells
-    else
-    {
-        promoText->SetText(texts[RankedStatus::None]);
-    }
 }
 
 static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
