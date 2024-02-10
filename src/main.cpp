@@ -69,8 +69,6 @@ MAKE_HOOK_MATCH(LevelListTableCell_SetDataFromLevelAsync, &GlobalNamespace::Leve
     }
 
     bool isRanked = rankedStatus != RankedStatus::None;
-
-    if(isRanked && getModConfig().Enabled.GetValue())
 }
 static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
 
