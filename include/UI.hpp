@@ -1,4 +1,12 @@
-#include "questui/shared/QuestUI.hpp"
+#pragma once
 
-    void(*DidActivateEvent)(HMUI::ViewController* self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling);
-        void(*GameplaySetupMenuEvent)(UnityEngine::GameObject* self, bool firstActivation);
+#include "custom-types/shared/macros.hpp"
+
+#include "HMUI/ViewController.hpp"
+
+#include "beatsaber-hook/shared/utils/il2cpp-functions.hpp"
+
+DECLARE_CLASS_CODEGEN(ScoreViewer, SettingsViewController, HMUI::ViewController,
+
+    DECLARE_OVERRIDE_METHOD(void, DidActivate, il2cpp_utils::FindMethodUnsafe("HMUI", "ViewController", "DidActivate", 3), bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling);
+)
