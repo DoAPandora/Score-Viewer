@@ -83,20 +83,14 @@ MAKE_HOOK_MATCH(LevelListTableCell_SetDataFromLevelAsync, &GlobalNamespace::Leve
     if(isRanked && getModConfig().Enabled.GetValue())
     {
         promoText->SetText(getModConfig().DifferentText.GetValue() ? texts[rankedStatus] : texts[RankedStatus::Ranked]);
-        promoTextBg->set_color(getModConfig().DifferentColor.GetValue() ? colors[rankedStatus] : colors[RankedStatus::Ranked]);
+        //promoTextBg->set_color(getModConfig().DifferentColor.GetValue() ? colors[rankedStatus] : colors[RankedStatus::Ranked]);
     }
     // fix issues with reused cells
     else
     {
         promoText->SetText(texts[RankedStatus::None]);
-        promoTextBg->set_color(colors[RankedStatus::None]);
+        //promoTextBg->set_color(colors[RankedStatus::None]);
     }
-}
-
-Logger &getLogger()
-{
-    static Logger *logger = new Logger(modInfo);
-    return *logger;
 }
 
 static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
@@ -106,6 +100,12 @@ static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to 
 Configuration& getConfig() {
     static Configuration config(modInfo);
     return config;
+}
+
+// Returns a logger, useful for printing debug messages
+Logger& getLogger() {
+    static Logger* logger = new Logger(modInfo);
+    return *logger;
 }
 
 // Called at the early stages of game loading
