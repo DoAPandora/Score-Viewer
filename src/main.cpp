@@ -1,6 +1,6 @@
 #include "main.hpp"
 
-#include "config.hpp"
+#include "_config.hpp"
 #include "bsml/shared/BSML.hpp"
 #include "UI/ScoreViewerFlowCoordinator.hpp"
 
