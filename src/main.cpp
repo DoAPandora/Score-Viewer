@@ -1,9 +1,10 @@
 #include "main.hpp"
 
-#include "Config.hpp"
-#include "UI.hpp"
+#include "config.hpp"
+#include "bsml/shared/BSML.hpp"
+#include "UI/ScoreViewerFlowCoordinator.hpp"
 
-#include "questui/shared/QuestUI.hpp"
+#include "logging.hpp"
 
 #include "GlobalNamespace/LevelListTableCell.hpp"
 
@@ -102,8 +103,10 @@ extern "C" void load()
 
     songDetails = SongDetailsCache::SongDetails::Init(0).get();
 
-    QuestUI::Init();
-    QuestUI::Register::RegisterAllModSettingsViewController<ScoreViewer::SettingsViewController*>(modInfo);
+    // BSML::Register::RegisterMenuButton<
+    BSML::Register::RegisterSettingsMenu<ScoreViewer::UI::ScoreViewerFlowCoordinator*>("ScoreViewer");
+    INFO("Registered settings menu!");
+    INFO("ScoreViewer loaded!");
 
     getLogger().info("Installing hooks...");
     INSTALL_HOOK(getLogger(), LevelListTableCell_SetDataFromLevelAsync);
