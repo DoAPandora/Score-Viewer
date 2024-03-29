@@ -7,6 +7,7 @@
 #include "logging.hpp"
 
 #include "GlobalNamespace/LevelListTableCell.hpp"
+#include "songcore/shared/SongCore.hpp"
 
 #include "UnityEngine/GameObject.hpp"
 #include "UnityEngine/Transform.hpp"
@@ -69,35 +70,35 @@ MAKE_HOOK_MATCH(LevelListTableCell_SetDataFromLevelAsync, &GlobalNamespace::Leve
 
     bool isRanked = rankedStatus != RankedStatus::None;
 }
-static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
+static CModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
+
+static modloader::ModInfo modInfo{MOD_ID, VERSION, 0};
+// Stores the ID and version of our mod, and is sent to
+// the modloader upon startup
 
 // Loads the config from disk using our modInfo, then returns it for use
-// other config tools such as config-utils don't use this config, so it can be removed if those are in use
-Configuration& getConfig() {
-    static Configuration config(modInfo);
-    return config;
-}
-
-// Returns a logger, useful for printing debug messages
-Logger& getLogger() {
-    static Logger* logger = new Logger(modInfo);
-    return *logger;
+// other config tools such as config-utils don't use this config, so it can be
+// removed if those are in use
+Configuration &getConfig() {
+  static Configuration config(modInfo);
+  return config;
 }
 
 // Called at the early stages of game loading
-extern "C" void setup(ModInfo& info) {
-    info.id = MOD_ID;
-    info.version = VERSION;
-    modInfo = info;
-	
-    getConfig().Load();
-    getLogger().info("Completed setup!");
+MOD_EXPORT void setup(CModInfo *info) noexcept {
+  *info = modInfo.to_c();
+
+  getConfig().Load();
+
+  // File logging
+  Paper::Logger::RegisterFileContextId(PaperLogger.tag);
+
+  PaperLogger.info("Completed setup!");
 }
 
 // Called later on in the game loading - a good time to install function hooks
-extern "C" void load()
-{
-    il2cpp_functions::Init();
+MOD_EXPORT void late_load() noexcept {
+  il2cpp_functions::Init();
 
     songDetails = SongDetailsCache::SongDetails::Init(0).get();
 
@@ -106,7 +107,7 @@ extern "C" void load()
     INFO("Registered settings menu!");
     INFO("ScoreViewer loaded!");
 
-    getLogger().info("Installing hooks...");
-    INSTALL_HOOK(getLogger(), LevelListTableCell_SetDataFromLevelAsync);
-    getLogger().info("Installed all hooks!");
+    PaperLogger().info("Installing hooks...");
+    INSTALL_HOOK(PaperLogger(), LevelListTableCell_SetDataFromLevelAsync);
+    PaperLogger().info("Installed all hooks!");
 }

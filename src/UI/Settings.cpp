@@ -29,7 +29,7 @@ void ScoreViewer::UI::Settings::DidActivate(bool firstActivation, bool addedToHe
 
     DEBUG("Got values");
 
-    BSML::parse_and_construct(Assets::Settings_bsml, this->get_transform(), this);
+    //BSML::parse_and_construct(Assets::Settings_bsml, this->get_transform(), this);
 
     #ifdef HotReload
         fileWatcher->checkInterval = 0.5f;
@@ -40,9 +40,8 @@ void ScoreViewer::UI::Settings::DidActivate(bool firstActivation, bool addedToHe
 void ScoreViewer::UI::Settings::PostParse() {
     DEBUG("Settings PostParse");
 
-       void ScoreViewer::UI::Settings::UpdateSettings() {
+       void ScoreViewer::UI::Settings::UpdateSettings()
        INFO("Updating settings");
 
        INFO("Updated settings")
     }
-}

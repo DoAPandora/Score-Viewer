@@ -11,7 +11,7 @@ void ScoreViewer::UI::AdvancedSettings::DidActivate(bool firstActivation, bool a
 
     INFO("AdvancedSettings activated");
 
-    BSML::parse_and_construct(Assets::AdvancedSettings_bsml, this->get_transform(), this);
+    //BSML::parse_and_construct(Assets::AdvancedSettings_bsml, this->get_transform(), this);
     #ifdef HotReload
         fileWatcher->filePath = "/sdcard/bsml/ScoreViewer/AdvancedSettings.bsml";
     #endif

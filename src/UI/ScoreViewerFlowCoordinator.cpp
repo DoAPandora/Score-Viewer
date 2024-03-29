@@ -8,8 +8,8 @@
 
 DEFINE_TYPE(ScoreViewer::UI, ScoreViewerFlowCoordinator);
 
-void ScoreViewer::UI::ScoreViewerFlowCoordinator::Awake() {
-    fcInstance = this;
+void ScoreViewer::UI::ScoreViewerFlowCoordinator() {
+    //fcInstance = this;
     if (!settings) {
         settings = BSML::Helpers::CreateViewController<ScoreViewer::UI::Settings*>();
        }
@@ -20,7 +20,7 @@ void ScoreViewer::UI::ScoreViewerFlowCoordinator::DidActivate(bool firstActivati
 
     SetTitle(il2cpp_utils::newcsstr("Score Viewer"), HMUI::ViewController::AnimationType::In);
     this->____showBackButton = true;
-    ProvideInitialViewControllers(settings, advancedSettings, nullptr, nullptr);
+    ProvideInitialViewControllers(settings, AdvancedSettings, nullptr, nullptr);
 }
 
 void ScoreViewer::UI::ScoreViewerFlowCoordinator::BackButtonWasPressed(HMUI::ViewController* topViewController) {

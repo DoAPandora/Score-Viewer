@@ -69,6 +69,13 @@
 		"id": "paper",
 		"versionRange": "^3.6.3",
 		"additionalData": {}
+	  },
+	  {
+		"id": "kaleb",
+		"versionRange": "^0.1.9",
+		"additionalData": {
+			"private": true
+		}
 	  }
 	],
 	"additionalData": {}

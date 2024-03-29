@@ -29,4 +29,3 @@ DECLARE_CLASS_CODEGEN(ScoreViewer::UI, Settings, HMUI::ViewController,
     DECLARE_INSTANCE_FIELD(ListW<float>, systemDisplayFrequenciesAvailableValues);
     DECLARE_INSTANCE_FIELD(ListW<StringW>, systemDisplayFrequenciesAvailableLabels);
    )
-)
