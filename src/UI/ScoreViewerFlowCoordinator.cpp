@@ -6,7 +6,7 @@
 #include "GlobalNamespace/MenuTransitionsHelper.hpp"
 #include "UnityEngine/Resources.hpp"
 
-DEFINE_TYPE(ScoreViewer::UI, GraphicsTweaksFlowCoordinator);
+DEFINE_TYPE(ScoreViewer::UI, ScoreViewerFlowCoordinator);
 
 void ScoreViewer::UI::ScoreViewerFlowCoordinator::Awake() {
     fcInstance = this;

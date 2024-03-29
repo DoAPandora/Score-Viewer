@@ -6,6 +6,9 @@
 #include "HMUI/ViewController.hpp"
 #include "HMUI/FlowCoordinator.hpp"
 
+#include "UI/AdvancedSettings.hpp"
+#include "UI/Settings.hpp"
+
 DECLARE_CLASS_CODEGEN(ScoreViewer::UI, ScoreViewerFlowCoordinator, HMUI::FlowCoordinator,
     DECLARE_INSTANCE_FIELD(ScoreViewer::UI::Settings*, settings);
 

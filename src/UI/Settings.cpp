@@ -1,11 +1,15 @@
 #include "UI/Settings.hpp"
 #include "bsml/shared/BSML.hpp"
+
 #include "UnityEngine/Resources.hpp"
+#include "GlobalNamespace/OVRPlugin.hpp"
+
 #include "assets.hpp"
+#include "logging.hpp"
 
 DEFINE_TYPE(ScoreViewer::UI, Settings);
 
-void ScoreViewer::UI::SettingsView::DidActivate(bool firstActivation, bool addedToHeirarchy, bool screenSystemDisabling)
+void ScoreViewer::UI::Settings::DidActivate(bool firstActivation, bool addedToHeirarchy, bool screenSystemDisabling)
 {
     if (!firstActivation)
         return;
@@ -36,7 +40,7 @@ void ScoreViewer::UI::SettingsView::DidActivate(bool firstActivation, bool added
 void ScoreViewer::UI::Settings::PostParse() {
     DEBUG("Settings PostParse");
 
-       void GraphicsTweaks::UI::Settings::UpdateSettings() {
+       void ScoreViewer::UI::Settings::UpdateSettings() {
        INFO("Updating settings");
 
        INFO("Updated settings")

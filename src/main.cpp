@@ -15,8 +15,6 @@
 
 #include "TMPro/TMP_Text.hpp"
 
-#include "Polyglot/LocalizedTextMeshProUGUI.hpp"
-
 #include "song-details/shared/SongDetails.hpp"
 
 SongDetailsCache::SongDetails* songDetails;
