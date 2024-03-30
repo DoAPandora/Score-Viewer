@@ -16,10 +16,3 @@
 #include "paper/shared/logger.hpp"
 
 #include "_config.hpp"
-
-// Define these functions here so that we can easily read configuration and
-// log information from other files
-Configuration &getConfig();
-[[deprecated]] ::Logger &getOldLogger();
-
-constexpr auto PaperLogger = Paper::ConstLoggerContext("#{id}");

@@ -2,11 +2,10 @@
 
 #include "_config.hpp"
 #include "bsml/shared/BSML.hpp"
-#include "UI/ScoreViewerFlowCoordinator.hpp"
-
-#include "logging.hpp"
+#include "ScoreViewerFlowCoordinator.hpp"
 
 #include "GlobalNamespace/LevelListTableCell.hpp"
+#include "paper/shared/logger.hpp"
 #include "songcore/shared/SongCore.hpp"
 
 #include "UnityEngine/GameObject.hpp"
@@ -53,7 +52,6 @@ RankedStatus GetRankedStatus(std::string hash)
     return RankedStatus::None;
 }
 
-MAKE_HOOK_MATCH(LevelListTableCell_SetDataFromLevelAsync, &GlobalNamespace::LevelListTableCell::SetDataFromLevelAsync, void, GlobalNamespace::LevelListTableCell* self, GlobalNamespace::IPreviewBeatmapLevel* level, bool isFavorite, bool isPromoted, bool isUpdated)
 {
     LevelListTableCell_SetDataFromLevelAsync(self, level, isFavorite, isPromoted, isUpdated);
     if(!songDetails->songs.get_isDataAvailable())
@@ -108,6 +106,6 @@ MOD_EXPORT void late_load() noexcept {
     INFO("ScoreViewer loaded!");
 
     PaperLogger().info("Installing hooks...");
-    INSTALL_HOOK(PaperLogger(), LevelListTableCell_SetDataFromLevelAsync);
+    INSTALL_HOOK(logger(), LevelListTableCell_SetDataFromLevelAsync);
     PaperLogger().info("Installed all hooks!");
 }
