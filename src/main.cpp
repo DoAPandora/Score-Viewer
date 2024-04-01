@@ -1,6 +1,6 @@
 #include "main.hpp"
 
-#include "ModSettingsViewController.hpp"
+#include "ModSettingsView.hpp"
 #include "bsml/shared/BSML.hpp"
 #include "GlobalNamespace/MainMenuViewController.hpp"
 
