@@ -1,21 +1,21 @@
 #include "main.hpp"
 
-#include "_config.hpp"
+#include "ModSettingsViewController.hpp"
 #include "bsml/shared/BSML.hpp"
-#include "ScoreViewerFlowCoordinator.hpp"
+#include "GlobalNamespace/MainMenuViewController.hpp"
 
 #include "GlobalNamespace/LevelListTableCell.hpp"
 #include "paper/shared/logger.hpp"
-#include "songcore/shared/SongCore.hpp"
 
 #include "UnityEngine/GameObject.hpp"
 #include "UnityEngine/Transform.hpp"
 
 #include "HMUI/ImageView.hpp"
-
 #include "TMPro/TMP_Text.hpp"
-
 #include "song-details/shared/SongDetails.hpp"
+
+#include "beatsaber-hook/shared/utils/hooking.hpp"
+#include "beatsaber-hook/shared/utils/il2cpp-utils.hpp"
 
 SongDetailsCache::SongDetails* songDetails;
 
@@ -52,6 +52,25 @@ RankedStatus GetRankedStatus(std::string hash)
     return RankedStatus::None;
 }
 
+static modloader::ModInfo modInfo{MOD_ID, VERSION, 0};
+
+using namespace GlobalNamespace;
+
+Configuration& getConfig() {
+    static Configuration config(modInfo);
+    return config;
+}
+
+bool hasLoaded = false;
+
+MAKE_HOOK_MATCH(MainMenuViewControllerDidActivate, &GlobalNamespace::MainMenuViewController::DidActivate, void, GlobalNamespace::MainMenuViewController *self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling) {
+    MainMenuViewControllerDidActivate(self, firstActivation, addedToHierarchy, screenSystemEnabling);
+
+    if(firstActivation) {
+        hasLoaded = true;
+    }
+}
+
 {
     LevelListTableCell_SetDataFromLevelAsync(self, level, isFavorite, isPromoted, isUpdated);
     if(!songDetails->songs.get_isDataAvailable())
@@ -68,44 +87,31 @@ RankedStatus GetRankedStatus(std::string hash)
 
     bool isRanked = rankedStatus != RankedStatus::None;
 }
-static CModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
+extern "C" void setup(CModInfo& info) {
+    info.id = modInfo.id.c_str();
+    info.version = modInfo.version.c_str();
+    info.version_long = modInfo.versionLong;
 
-static modloader::ModInfo modInfo{MOD_ID, VERSION, 0};
-// Stores the ID and version of our mod, and is sent to
-// the modloader upon startup
+    Paper::Logger::RegisterFileContextId(MOD_ID);
 
-// Loads the config from disk using our modInfo, then returns it for use
-// other config tools such as config-utils don't use this config, so it can be
-// removed if those are in use
-Configuration &getConfig() {
-  static Configuration config(modInfo);
-  return config;
+    getConfig().Load();
+    logger.info("Completed setup!");
 }
 
-// Called at the early stages of game loading
-MOD_EXPORT void setup(CModInfo *info) noexcept {
-  *info = modInfo.to_c();
+extern "C" void load() {
+    il2cpp_functions::Init();
+    BSML::Init();
+    BSML::Register::RegisterSettingsMenu("Score Viewer", DidActivate, false);
 
-  getConfig().Load();
+    if(!getConfig().config.HasMember("Enabled")) {
+        getConfig().config.AddMember("Enabled", true, getConfig().config.GetAllocator());
+        getConfig().Write();
+    }
 
-  // File logging
-  Paper::Logger::RegisterFileContextId(PaperLogger.tag);
+    logger.info("Registered Mod Settings!");
 
-  PaperLogger.info("Completed setup!");
-}
 
-// Called later on in the game loading - a good time to install function hooks
-MOD_EXPORT void late_load() noexcept {
-  il2cpp_functions::Init();
-
-    songDetails = SongDetailsCache::SongDetails::Init(0).get();
-
-    // BSML::Register::RegisterMenuButton<
-    BSML::Register::RegisterSettingsMenu<ScoreViewer::UI::ScoreViewerFlowCoordinator*>("ScoreViewer");
-    INFO("Registered settings menu!");
-    INFO("ScoreViewer loaded!");
-
-    PaperLogger().info("Installing hooks...");
-    INSTALL_HOOK(logger(), LevelListTableCell_SetDataFromLevelAsync);
-    PaperLogger().info("Installed all hooks!");
+    logger.info("Installing hooks...");
+    INSTALL_HOOK(logger, MainMenuViewControllerDidActivate);
+    logger.info("Installed all hooks!");
 }
