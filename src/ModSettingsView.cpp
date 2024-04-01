@@ -1,4 +1,4 @@
-#include "ModSettingsViewController.hpp"
+#include "ModSettingsView.hpp"
 #include "main.hpp"
 
 #include "HMUI/Touchable.hpp"
