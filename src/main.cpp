@@ -1,12 +1,11 @@
 #include "main.hpp"
 
-#include "ModSettingsView.hpp"
+#include "UI/ModSettingsView.hpp"
+#include "UI/TabView.hpp"
 #include "bsml/shared/BSML.hpp"
 #include "GlobalNamespace/MainMenuViewController.hpp"
 
 #include "GlobalNamespace/LevelListTableCell.hpp"
-#include "paper/shared/logger.hpp"
-
 #include "UnityEngine/GameObject.hpp"
 #include "UnityEngine/Transform.hpp"
 
@@ -16,6 +15,11 @@
 
 #include "beatsaber-hook/shared/utils/hooking.hpp"
 #include "beatsaber-hook/shared/utils/il2cpp-utils.hpp"
+
+#include "ScoreSaberData/ScoreSaberScore.hpp"
+#include "BeatLeaderData/BeatLeaderScore.hpp"
+
+#include <map>
 
 SongDetailsCache::SongDetails* songDetails;
 
@@ -102,6 +106,8 @@ extern "C" void load() {
     il2cpp_functions::Init();
     BSML::Init();
     BSML::Register::RegisterSettingsMenu("Score Viewer", DidActivate, false);
+    BSML::Register::RegisterGameplaySetupTab("Score Viewer", MOD_ID "_settings", ScoreViewer::ScoreMenuManager::get_instance(), BSML::MenuType::Solo);
+    BSML::Register::RegisterGameplaySetupTab<ScoreViewer::ScoreMenu*>("Score Viewer");
 
     if(!getConfig().config.HasMember("Enabled")) {
         getConfig().config.AddMember("Enabled", true, getConfig().config.GetAllocator());
