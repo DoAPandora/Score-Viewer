@@ -1,5 +1,5 @@
-#include "ScoreSaberScore.hpp"
-#include "ScoreSaberStringUtils.hpp"
+#include "ScoreSaberData/ScoreSaberScore.hpp"
+#include "ScoreSaberData/ScoreSaberStringUtils.hpp"
 #include "beatsaber-hook/shared/utils/utils.h"
 
 namespace ScoreSaber::Data

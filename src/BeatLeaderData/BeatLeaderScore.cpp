@@ -1,4 +1,4 @@
-#include "BeatLeaderScore.hpp"
+#include "BeatLeaderData/BeatLeaderScore.hpp"
 
 Score::Score() {}
 

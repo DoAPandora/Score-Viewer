@@ -3,7 +3,7 @@
 #include "custom-types/shared/macros.hpp"
 #include "custom-types/shared/coroutine.hpp"
 
-#include "GlobalNamespace/IPreviewBeatmapLevel.hpp"
+#include "songcore/shared/SongCore.hpp"
 
 #include "UnityEngine/GameObject.hpp"
 #include "UnityEngine/RectTransform.hpp"
